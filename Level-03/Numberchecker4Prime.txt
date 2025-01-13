@@ -1,0 +1,100 @@
+public class NumberChecker {
+
+    public static void main(String[] args) {
+        int number = 25; // Change this number to test different cases
+
+        System.out.println("Number: " + number);
+
+        // Check if the number is prime
+        boolean isPrime = isPrimeNumber(number);
+        System.out.println("Is Prime number: " + isPrime);
+
+        // Check if the number is a neon number
+        boolean isNeon = isNeonNumber(number);
+        System.out.println("Is Neon number: " + isNeon);
+
+        // Check if the number is a spy number
+        boolean isSpy = isSpyNumber(number);
+        System.out.println("Is Spy number: " + isSpy);
+
+        // Check if the number is an automorphic number
+        boolean isAutomorphic = isAutomorphicNumber(number);
+        System.out.println("Is Automorphic number: " + isAutomorphic);
+
+        // Check if the number is a buzz number
+        boolean isBuzz = isBuzzNumber(number);
+        System.out.println("Is Buzz number: " + isBuzz);
+    }
+
+    // Method to check if a number is a prime number
+    public static boolean isPrimeNumber(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) { // Only check up to the square root
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Method to check if a number is a neon number
+    public static boolean isNeonNumber(int number) {
+        int square = number * number;
+        int sumOfDigits = 0;
+
+        while (square > 0) {
+            sumOfDigits += square % 10;
+            square /= 10;
+        }
+
+        return sumOfDigits == number;
+    }
+
+    // Method to check if a number is a spy number
+    public static boolean isSpyNumber(int number) {
+        int sumOfDigits = 0;
+        int productOfDigits = 1;
+
+        while (number > 0) {
+            int digit = number % 10;
+            sumOfDigits += digit;
+            productOfDigits *= digit;
+            number /= 10;
+        }
+
+        return sumOfDigits == productOfDigits;
+    }
+
+    // Method to check if a number is an automorphic number
+    public static boolean isAutomorphicNumber(int number) {
+        int square = number * number;
+        int tempNumber = number;
+        int digitsCount = 0;
+
+        // Calculate the number of digits in the original number
+        while (tempNumber > 0) {
+            tempNumber /= 10;
+            digitsCount++;
+        }
+
+        // Extract the last 'digitsCount' digits of the square manually and compare
+        int lastDigits = 0;
+        int divisor = 1;
+
+        // Extract last 'digitsCount' digits from square
+        for (int i = 0; i < digitsCount; i++) {
+            lastDigits = square % 10;
+            square /= 10;
+            divisor *= 10;
+        }
+
+        return lastDigits == number;
+    }
+
+    // Method to check if a number is a buzz number
+    public static boolean isBuzzNumber(int number) {
+        return number % 7 == 0 || number % 10 == 7;
+    }
+}
