@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class TotalIncomeCalculator {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for salary and bonus
+        double salary, bonus, totalIncome;
+
+        // Take user input for salary and bonus
+        System.out.print("Enter the salary in INR: ");
+        salary = input.nextDouble();
+
+        System.out.print("Enter the bonus in INR: ");
+        bonus = input.nextDouble();
+
+        // Calculate the total income
+        totalIncome = salary + bonus;
+
+        // Print the result
+        System.out.println("The salary is INR " + salary + " and bonus is INR " + bonus + ". Hence, Total Income is INR " + totalIncome);
+
+        // Close the scanner
+        input.close();
+    }
+}
