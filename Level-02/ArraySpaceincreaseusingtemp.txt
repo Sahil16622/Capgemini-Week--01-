@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class LargestDigitsFinder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        // Define variables
+        int maxDigit = 10; // Initial max number of digits
+        int[] digits = new int[maxDigit];
+        int index = 0;
+
+        // Extract digits and store them in the array
+        while (number != 0) {
+            // Check if the array is full and needs to be resized
+            if (index >= maxDigit) {
+                maxDigit += 10; // Increase the size of the array by 10
+                // Create a temporary array with the new size
+                int[] temp = new int[maxDigit];
+                // Copy the elements from the current digits array to the temp array
+                System.arraycopy(digits, 0, temp, 0, digits.length);
+                // Assign the temp array to digits array
+                digits = temp;
+            }
+
+            digits[index++] = number % 10; // Store the last digit
+            number /= 10; // Remove the last digit
+        }
+
+        // Initialize largest and second largest variables
+        int largest = 0;
+        int secondLargest = 0;
+
+        // Find largest and second largest digits
+        for (int i = 0; i < index; i++) {
+            if (digits[i] > largest) {
+                secondLargest = largest;
+                largest = digits[i];
+            } else if (digits[i] > secondLargest && digits[i] != largest) {
+                secondLargest = digits[i];
+            }
+        }
+
+        // Display the results
+        System.out.println("The largest digit is: " + largest);
+        if (secondLargest > 0) {
+            System.out.println("The second largest digit is: " + secondLargest);
+        } else {
+            System.out.println("No second largest digit exists.");
+        }
+
+        scanner.close();
+    }
+}
