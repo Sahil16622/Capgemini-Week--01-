@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class TriangleRunCalculator {
+
+    // Method to calculate the perimeter of the triangle
+    public static double calculatePerimeter(double side1, double side2, double side3) {
+        return side1 + side2 + side3;
+    }
+
+    // Method to calculate the number of rounds required to complete 5 km
+    public static int calculateRounds(double perimeter) {
+        double distanceToRun = 5000; // 5 km = 5000 meters
+        return (int) Math.ceil(distanceToRun / perimeter); // Round up to the nearest whole number
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object to take input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Input: 3 sides of the triangle (in meters)
+        System.out.print("Enter the length of side 1 of the triangle (in meters): ");
+        double side1 = scanner.nextDouble();
+
+        System.out.print("Enter the length of side 2 of the triangle (in meters): ");
+        double side2 = scanner.nextDouble();
+
+        System.out.print("Enter the length of side 3 of the triangle (in meters): ");
+        double side3 = scanner.nextDouble();
+
+        // Calculate the perimeter of the triangle
+        double perimeter = calculatePerimeter(side1, side2, side3);
+
+        // Calculate the number of rounds required to complete 5 km
+        int rounds = calculateRounds(perimeter);
+
+        // Output the result
+        System.out.println("The athlete needs to complete " + rounds + " rounds to finish a 5 km run.");
+
+        // Close the scanner
+        scanner.close();
+    }
+}
