@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class TemperatureConversion {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare the Celsius variable
+        double celsius, fahrenheitResult;
+
+        // Take user input for the temperature in Celsius
+        System.out.print("Enter the temperature in Celsius: ");
+        celsius = input.nextDouble();
+
+        // Convert Celsius to Fahrenheit using the formula
+        fahrenheitResult = (celsius * 9/5) + 32;
+
+        // Print the result
+        System.out.println(celsius + " Celsius is " + fahrenheitResult + " Fahrenheit.");
+
+        // Close the scanner
+        input.close();
+    }
+}
+
+

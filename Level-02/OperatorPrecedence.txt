@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class IntOperation {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for a, b, and c
+        int a, b, c;
+
+        // Take user input for a, b, and c
+        System.out.print("Enter the value of a: ");
+        a = input.nextInt();
+
+        System.out.print("Enter the value of b: ");
+        b = input.nextInt();
+
+        System.out.print("Enter the value of c: ");
+        c = input.nextInt();
+
+        // Perform the integer operations and store the results
+        int result1 = a + b * c;  // This operation follows precedence: multiplication first
+        int result2 = a * b + c;  // This operation follows precedence: multiplication first
+        int result3 = c + a / b;  // This operation follows precedence: division first
+        int result4 = a % b + c;  // This operation follows precedence: modulus first
+
+        // Print the results of the integer operations
+        System.out.println("The results of Int Operations are " + result1 + ", " + result2 + ", " + result3 + ", and " + result4);
+
+        // Close the scanner
+        input.close();
+    }
+}

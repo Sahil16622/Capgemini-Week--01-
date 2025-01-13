@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class TravelDetails {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for user input
+        String name, fromCity, viaCity, toCity;
+        double fromToVia, viaToFinalCity, totalDistance;
+        double timeTaken;
+
+        // Take user input for travel details
+        System.out.print("Enter your name: ");
+        name = input.nextLine();
+
+        System.out.print("Enter the starting city: ");
+        fromCity = input.nextLine();
+
+        System.out.print("Enter the via city: ");
+        viaCity = input.nextLine();
+
+        System.out.print("Enter the destination city: ");
+        toCity = input.nextLine();
+
+        // Take user input for distances in miles
+        System.out.print("Enter the distance from " + fromCity + " to " + viaCity + " in miles: ");
+        fromToVia = input.nextDouble();
+
+        System.out.print("Enter the distance from " + viaCity + " to " + toCity + " in miles: ");
+        viaToFinalCity = input.nextDouble();
+
+        // Calculate total distance
+        totalDistance = fromToVia + viaToFinalCity;
+
+        // Take user input for time taken
+        System.out.print("Enter the total time taken for the journey in hours: ");
+        timeTaken = input.nextDouble();
+
+        // Print the result
+        System.out.println("\nTravel Details for " + name + ":");
+        System.out.println("The total distance from " + fromCity + " to " + toCity + " via " + viaCity + " is " + totalDistance + " miles.");
+        System.out.println("The time taken for the journey is " + timeTaken + " hours.");
+        System.out.println("The average speed for the journey is " + (totalDistance / timeTaken) + " miles per hour.");
+
+        // Close the scanner
+        input.close();
+    }
+}
+
+
