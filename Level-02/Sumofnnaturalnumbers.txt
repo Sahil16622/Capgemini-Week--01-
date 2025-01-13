@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class NaturalNumberSum {
+
+    // Recursive method to calculate the sum of n natural numbers
+    public static int sumUsingRecursion(int n) {
+        if (n == 1) {
+            return 1; // Base case: sum of 1 is 1
+        }
+        return n + sumUsingRecursion(n - 1); // Recursive case
+    }
+
+    // Method to calculate the sum of n natural numbers using the formula
+    public static int sumUsingFormula(int n) {
+        return n * (n + 1) / 2;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking user input
+        System.out.print("Enter a natural number (positive integer): ");
+        int n = scanner.nextInt();
+
+        // Check if the number is a natural number
+        if (n <= 0) {
+            System.out.println("The number entered is not a natural number. Exiting...");
+            return;
+        }
+
+        // Calculate the sum using recursion
+        int sumRecursion = sumUsingRecursion(n);
+
+        // Calculate the sum using the formula
+        int sumFormula = sumUsingFormula(n);
+
+        // Compare the results and display
+        System.out.println("Sum calculated using recursion: " + sumRecursion);
+        System.out.println("Sum calculated using formula: " + sumFormula);
+
+        // Verifying if both results are the same
+        if (sumRecursion == sumFormula) {
+            System.out.println("The results match! Both computations are correct.");
+        } else {
+            System.out.println("The results do not match. There may be an error in the calculations.");
+        }
+
+        scanner.close();
+    }
+}
