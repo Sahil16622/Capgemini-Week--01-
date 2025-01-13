@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class HandshakesCalculator {
+
+    // Method to calculate the number of handshakes using the combination formula
+    public static int calculateHandshakes(int n) {
+        // Combination formula: (n * (n - 1)) / 2
+        return (n * (n - 1)) / 2;
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object to take input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Input: Number of students
+        System.out.print("Enter the number of students: ");
+        int n = scanner.nextInt();
+
+        // Ensure that the number of students is greater than 1
+        if (n <= 1) {
+            System.out.println("There must be at least 2 students to have handshakes.");
+        } else {
+            // Calculate the maximum number of handshakes
+            int handshakes = calculateHandshakes(n);
+
+            // Output the result
+            System.out.println("The maximum number of handshakes among " + n + " students is: " + handshakes);
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
