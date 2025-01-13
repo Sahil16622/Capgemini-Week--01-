@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class WeightConversion {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for weight in pounds and kilograms
+        double weightInPounds, weightInKg;
+
+        // Take user input for weight in pounds
+        System.out.print("Enter the weight in pounds: ");
+        weightInPounds = input.nextDouble();
+
+        // Convert pounds to kilograms (1 pound = 2.2 kg)
+        weightInKg = weightInPounds * 2.2;
+
+        // Print the result
+        System.out.println("The weight of the person in pound is " + weightInPounds + " and in kg is " + weightInKg);
+
+        // Close the scanner
+        input.close();
+    }
+}
+
