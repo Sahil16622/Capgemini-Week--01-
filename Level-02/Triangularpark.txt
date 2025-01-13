@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class AthleteRun {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variables for the sides of the triangle
+        double side1, side2, side3, perimeter, rounds;
+
+        // Take user input for the sides of the triangle in meters
+        System.out.print("Enter the first side of the triangle in meters: ");
+        side1 = input.nextDouble();
+
+        System.out.print("Enter the second side of the triangle in meters: ");
+        side2 = input.nextDouble();
+
+        System.out.print("Enter the third side of the triangle in meters: ");
+        side3 = input.nextDouble();
+
+        // Calculate the perimeter of the triangle
+        perimeter = side1 + side2 + side3;
+
+        // Convert 5 km to meters (5000 meters)
+        double distanceToCover = 5000;
+
+        // Calculate the number of rounds required to cover 5 km
+        rounds = distanceToCover / perimeter;
+
+        // Print the result
+        System.out.println("The total number of rounds the athlete will run is " + rounds + " to complete 5 km.");
+
+        // Close the scanner
+        input.close();
+    }
+}
+
+
