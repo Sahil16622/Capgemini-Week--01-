@@ -1,0 +1,86 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking input for number of students
+        System.out.print("Enter the number of students to be examined: ");
+        int noOfStudents = scanner.nextInt();
+
+        // Create a 2D array to store marks of all students in physics, chemistry, and maths
+        double[][] studentMarks = generateRandomScores(noOfStudents);
+
+        // Calculate total, average, and percentage for each student
+        double[][] resultData = calculateResults(studentMarks);
+
+        // Display the scorecard in a tabular format
+        displayScoreCard(resultData);
+        
+        scanner.close();
+    }
+
+    // Method to generate random 2-digit scores for Physics, Chemistry, and Math
+    public static double[][] generateRandomScores(int noOfStudents) {
+        Random rand = new Random();
+        double[][] marks = new double[noOfStudents][3];  // 3 subjects per student
+
+        for (int i = 0; i < noOfStudents; i++) {
+            // Generate random scores between 10 and 99 for each subject
+            marks[i][0] = rand.nextInt(90) + 10;  // Physics
+            marks[i][1] = rand.nextInt(90) + 10;  // Chemistry
+            marks[i][2] = rand.nextInt(90) + 10;  // Maths
+        }
+
+        return marks;
+    }
+
+    // Method to calculate total, average, and percentage for each student
+    public static double[][] calculateResults(double[][] marks) {
+        double[][] resultData = new double[marks.length][4];  // 4 columns: total, average, percentage, grade
+
+        for (int i = 0; i < marks.length; i++) {
+            double total = marks[i][0] + marks[i][1] + marks[i][2];  // Total marks
+            double average = total / 3.0;  // Average marks
+            double percentage = Math.round((total / 300.0) * 100 * 100.0) / 100.0;  // Percentage with rounding to 2 decimals
+
+            resultData[i][0] = total;
+            resultData[i][1] = average;
+            resultData[i][2] = percentage;
+        }
+
+        return resultData;
+    }
+
+    // Method to display the scorecard in a tabular format
+    public static void displayScoreCard(double[][] resultData) {
+        System.out.println("Student No.\tPhysics\tChemistry\tMaths\tTotal\tAverage\tPercentage\tGrade");
+
+        for (int i = 0; i < resultData.length; i++) {
+            String grade = getGrade(resultData[i][2]);
+
+            // Display student details including grade
+            System.out.println((i + 1) + "\t\t" + resultData[i][0] + "\t" + resultData[i][1] + "\t\t" + resultData[i][2] + "\t" + resultData[i][3] + "\t\t" + grade);
+        }
+    }
+
+    // Method to determine the grade based on the percentage
+    public static String getGrade(double percentage) {
+        String grade;
+        if (percentage >= 80) {
+            grade = "A (Remarks: Level-4, above agency-normalised standards.)";
+        } else if (percentage >= 70) {
+            grade = "B (Remarks: Level-3, at agency-normalised standards.)";
+        } else if (percentage >= 60) {
+            grade = "C (Remarks: Level-2, below but approaching agency-normalised standards.)";
+        } else if (percentage >= 50) {
+            grade = "D (Remarks: Level-1, well below agency-normalised standards.)";
+        } else if (percentage >= 40) {
+            grade = "E (Remarks: Level-(-1), too below agency-normalised standards.)";
+        } else {
+            grade = "R (Remarks: Remedial standards)";
+        }
+        return grade;
+    }
+}
