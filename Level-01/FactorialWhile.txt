@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class FactorialWhileLoop {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        //Ask user to provide input
+        System.out.print("Enter a positive integer: ");
+        int n = scanner.nextInt();
+
+
+
+        
+
+        //check if number is not positive then print that its not possible to get its factorial
+        if (n < 0) {
+            System.out.println("Factorial is not defined for negative numbers.");
+            return;
+        }
+
+        int factorial = 1;
+        int i = 1; 
+   
+        //Run the while loop to calculate the factorial
+        while (i <= n) {
+            factorial *= i;
+            i++;
+        }
+   
+
+        //Print the factorial
+        System.out.println("The factorial of " + n + " is " + factorial + ".");
+       scanner.close();
+    }
+}
