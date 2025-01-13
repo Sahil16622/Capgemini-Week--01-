@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class RocketLaunchCountdown {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the starting value for the countdown
+        System.out.print("Enter the countdown starting number: ");
+        int counter = scanner.nextInt();
+
+        // Validate input to ensure it's a positive number
+        if (counter < 1) {
+            System.out.println("Please enter a positive number greater than or equal to 1.");
+        } else {
+            // Perform the countdown
+            while (counter >= 1) {
+                System.out.println(counter);
+                counter--; // Decrement the counter
+            }
+            System.out.println("Liftoff! 🚀");
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
