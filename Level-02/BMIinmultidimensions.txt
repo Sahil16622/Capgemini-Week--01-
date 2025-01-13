@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Taking input object to facilitate taking user input
+        Scanner input = new Scanner(System.in);
+
+        // Taking the input of the number of persons to be evaluated
+        System.out.print("Enter the number of persons to be evaluated: ");
+        int noOfPerson = input.nextInt();
+
+        // Creating a multi-dimensional array to store person's data
+        // Columns: 0 -> height, 1 -> weight, 2 -> BMI
+        double[][] personData = new double[noOfPerson][3];
+        String[] bmiStatus = new String[noOfPerson];
+
+        // Taking height input (in cm)
+        for (int i = 0; i < noOfPerson; i++) {
+            System.out.print("Enter the height (in cm) of person " + (i + 1) + ": ");
+            personData[i][0] = input.nextDouble();
+        }
+
+        // Taking weight input (in kg)
+        for (int i = 0; i < noOfPerson; i++) {
+            System.out.print("Enter the weight (in kg) of person " + (i + 1) + ": ");
+            personData[i][1] = input.nextDouble();
+        }
+
+        // Calculating BMI and storing it in the array
+        for (int i = 0; i < noOfPerson; i++) {
+            // Convert height from cm to meters
+            double heightInMeters = personData[i][0] / 100.0;
+            // Calculate BMI
+            personData[i][2] = personData[i][1] / (heightInMeters * heightInMeters);
+
+            // Determine BMI status
+            if (personData[i][2] <= 18.4) {
+                bmiStatus[i] = "Underweight";
+            } else if (personData[i][2] >= 18.5 && personData[i][2] <= 24.9) {
+                bmiStatus[i] = "Normal";
+            } else if (personData[i][2] >= 25.0 && personData[i][2] <= 39.9) {
+                bmiStatus[i] = "Overweight";
+            } else {
+                bmiStatus[i] = "Obese";
+            }
+        }
+
+        // Displaying the status
+        System.out.println("\n--- Results ---");
+        for (int i = 0; i < noOfPerson; i++) {
+            System.out.println("Person " + (i + 1) + ":");
+            System.out.println("  Height: " + personData[i][0] + " cm");
+            System.out.println("  Weight: " + personData[i][1] + " kg");
+            System.out.println("  BMI: " + personData[i][2]);
+            System.out.println("  Status: " + bmiStatus[i]);
+        }
+
+        input.close();
+    }
+}
