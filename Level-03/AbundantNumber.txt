@@ -1,0 +1,30 @@
+import java.util.Scanner; // Import Scanner class for user input
+
+public class AbundantNumber {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a number
+        System.out.print("Enter a number to check if it is an Abundant Number: ");
+        int number = scanner.nextInt(); // Read the input number
+
+        int sum = 0; // Variable to store the sum of divisors
+
+        // Loop to find all divisors of the number
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) { // Check if i is a divisor of number
+                sum += i; // Add the divisor to the sum
+            }
+        }
+
+        // Check if the sum of divisors is greater than the number
+        if (sum > number) {
+            System.out.println(number + " is an Abundant Number.");
+        } else {
+            System.out.println(number + " is not an Abundant Number.");
+        }
+
+        scanner.close(); // Close the Scanner object
+    }
+}
