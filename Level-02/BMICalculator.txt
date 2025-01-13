@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class BMICalculator {
+
+    // Method to calculate BMI for each person and populate the BMI column
+    public static void calculateBMI(double[][] data) {
+        for (int i = 0; i < 10; i++) {
+            double weight = data[i][0]; // weight in kg
+            double height = data[i][1] / 100; // height in cm to meters
+            // BMI = weight / (height * height)
+            double bmi = weight / (height * height);
+            data[i][2] = bmi; // Store BMI in the 3rd column
+        }
+    }
+
+    // Method to determine the BMI status for each person and return an array of statuses
+    public static String[] determineStatus(double[][] data) {
+        String[] status = new String[10];
+        for (int i = 0; i < 10; i++) {
+            double bmi = data[i][2]; // Get the BMI value
+            if (bmi <= 18.4) {
+                status[i] = "Underweight";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                status[i] = "Normal weight";
+            } else if (bmi >= 25 && bmi <= 39.9) {
+                status[i] = "Overweight";
+            } else {
+                status[i] = "Obese";
+            }
+        }
+        return status;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 2D array to store weight, height, and BMI (for 10 team members)
+        double[][] teamData = new double[10][3]; // 10 persons, 3 columns (weight, height, BMI)
+
+        // Input weight and height for 10 team members
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Enter details for Person " + (i + 1) + ":");
+
+            // Input weight in kg
+            System.out.print("Enter weight in kg: ");
+            teamData[i][0] = scanner.nextDouble(); // Store weight in the first column
+
+            // Input height in cm
+            System.out.print("Enter height in cm: ");
+            teamData[i][1] = scanner.nextDouble(); // Store height in the second column
+        }
+
+        // Calculate BMI for all members
+        calculateBMI(teamData);
+
+        // Determine the BMI status for each member
+        String[] bmiStatus = determineStatus(teamData);
+
+        // Display the results for all 10 members in a simpler format
+        System.out.println("\nDetails of Team Members:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Person " + (i + 1) + ": Weight = " + teamData[i][0] + " kg, Height = " + teamData[i][1] + " cm, BMI = " + teamData[i][2] + ", Status = " + bmiStatus[i]);
+        }
+
+        scanner.close();
+    }
+}
