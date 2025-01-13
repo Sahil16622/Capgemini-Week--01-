@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class DistanceConverter {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variable for distance in feet
+        double distanceInFeet;
+
+        // Take user input for distance in feet
+        System.out.print("Enter the distance in feet: ");
+        distanceInFeet = input.nextDouble();
+
+        // Conversion constants
+        double feetInYard = 3; // 1 yard = 3 feet
+        double yardsInMile = 1760; // 1 mile = 1760 yards
+
+        // Convert feet to yards and miles
+        double distanceInYards = distanceInFeet / feetInYard;
+        double distanceInMiles = distanceInYards / yardsInMile;
+
+        // Print the results
+        System.out.println("The distance in yards is " + distanceInYards + " yards and in miles is " + distanceInMiles + " miles.");
+
+        // Close the scanner
+        input.close();
+    }
+}
