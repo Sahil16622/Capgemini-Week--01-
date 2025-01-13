@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class YoungestAndTallest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input ages and heights of three friends
+        System.out.print("Enter age of Amar: ");
+        int ageAmar = scanner.nextInt();
+        System.out.print("Enter height of Amar (cm): ");
+        int heightAmar = scanner.nextInt();
+
+        System.out.print("Enter age of Akbar: ");
+        int ageAkbar = scanner.nextInt();
+        System.out.print("Enter height of Akbar (cm): ");
+        int heightAkbar = scanner.nextInt();
+
+        System.out.print("Enter age of Anthony: ");
+        int ageAnthony = scanner.nextInt();
+        System.out.print("Enter height of Anthony (cm): ");
+        int heightAnthony = scanner.nextInt();
+
+        // Find youngest
+        int youngestAge = Math.min(ageAmar, Math.min(ageAkbar, ageAnthony));
+        System.out.print("The youngest is: ");
+        if (youngestAge == ageAmar) {
+            System.out.println("Amar");
+        } else if (youngestAge == ageAkbar) {
+            System.out.println("Akbar");
+        } else {
+            System.out.println("Anthony");
+        }
+
+        // Find tallest
+        int tallestHeight = Math.max(heightAmar, Math.max(heightAkbar, heightAnthony));
+        System.out.print("The tallest is: ");
+        if (tallestHeight == heightAmar) {
+            System.out.println("Amar");
+        } else if (tallestHeight == heightAkbar) {
+            System.out.println("Akbar");
+        } else {
+            System.out.println("Anthony");
+        }
+         scanner.close();
+    }
+}
