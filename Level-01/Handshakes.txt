@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class HandshakeCalculator {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner input = new Scanner(System.in);
+
+        // Declare variable for number of students
+        int numberOfStudents;
+
+        // Take user input for number of students
+        System.out.print("Enter the number of students: ");
+        numberOfStudents = input.nextInt();
+
+        // Calculate the maximum number of handshakes using the combination formula
+        int handshakes = (numberOfStudents * (numberOfStudents - 1)) / 2;
+
+        // Print the result
+        System.out.println("The maximum number of handshakes among " + numberOfStudents + " students is " + handshakes);
+
+        // Close the scanner
+        input.close();
+    }
+}
