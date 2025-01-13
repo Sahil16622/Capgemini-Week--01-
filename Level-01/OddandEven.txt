@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class OddEvenNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //Ask the user to provide input
+        System.out.print("Enter a natural number: ");
+        int n = scanner.nextInt();
+
+
+        //if the user input contains number less than 1 then ask him to provide greater number
+        if (n < 1) {
+            System.out.println("Please enter a natural number greater than or equal to 1.");
+            return;
+        }
+
+
+         //Run for loop to iterate through all numbers
+         for (int i = 1; i <= n; i++) {
+
+            //Print even if it is divisible by 2
+            if (i % 2 == 0) {
+                System.out.println(i + " is an even number.");
+            } 
+
+            //Print odd if it is not divisible by two
+            else {
+                System.out.println(i + " is an odd number.");
+            }
+        }
+              scanner.close();
+    }
+}
+
+
