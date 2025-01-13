@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class ArraySum {
+    public static void main(String[] args) {
+        // Declare an array to store up to 10 double values and a total variable
+        double[] numbers = new double[10];
+        double total = 0.0;
+        int index = 0;  // To track the position in the array
+        Scanner scanner = new Scanner(System.in);
+
+        // Infinite while loop to take user input until a condition is met
+        while (true) {
+            System.out.print("Enter a number (enter 0 or a negative number to stop): ");
+            double number = scanner.nextDouble();
+
+            // Break the loop if the number is 0, negative, or if the array is full
+            if (number <= 0 || index == 10) {
+                break;
+            }
+
+            // Store the valid number in the array and increment the index
+            numbers[index] = number;
+            index++;
+        }
+
+        // Calculate the sum and display all the entered numbers
+        System.out.println("Entered numbers:");
+        for (int i = 0; i < index; i++) {
+            System.out.println(numbers[i]);
+            total += numbers[i];  // Add each number to the total
+        }
+
+        // Display the total sum
+        System.out.println("Total sum of all numbers: " + total);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
