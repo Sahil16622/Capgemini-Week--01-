@@ -1,0 +1,25 @@
+import java.util.Scanner; // Import Scanner class for user input
+
+public class CountDigits {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a number
+        System.out.print("Enter an integer to count its digits: ");
+        int number = scanner.nextInt(); // Read the input number
+
+        int count = 0; // Variable to store the digit count
+
+        // Use a loop to count the digits
+        while (number != 0) {
+            number /= 10; // Remove the last digit by dividing the number by 10
+            count++; // Increment the digit count
+        }
+
+        // Display the result
+        System.out.println("The number of digits is: " + count);
+
+        scanner.close(); // Close the Scanner object
+    }
+}
