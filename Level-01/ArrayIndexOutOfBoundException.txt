@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class ArrayIndexOutOfBoundsExceptionDemo {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Define an array of names
+        String[] names = {"Alice", "Bob", "Charlie", "Diana"};
+
+        // Display the available array elements
+        System.out.println("Available names:");
+        for (int i = 0; i < names.length; i++) {
+            System.out.println("Index " + i + ": " + names[i]);
+        }
+
+        // Take user input for an index
+        System.out.print("\nEnter an index to access: ");
+        int index = scanner.nextInt();
+
+        // Call the method to generate the exception
+        System.out.println("\nCalling method to generate ArrayIndexOutOfBoundsException:");
+        generateArrayIndexOutOfBoundsException(names, index);
+
+        // Call the method to handle the exception
+        System.out.println("\nCalling method to handle ArrayIndexOutOfBoundsException:");
+        handleArrayIndexOutOfBoundsException(names, index);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to generate ArrayIndexOutOfBoundsException
+    public static void generateArrayIndexOutOfBoundsException(String[] names, int index) {
+        System.out.println("Attempting to access the array at index " + index + "...");
+        // Access an index larger than the array length
+        System.out.println("Name at index " + index + ": " + names[index]); // This will throw ArrayIndexOutOfBoundsException
+    }
+
+    // Method to handle ArrayIndexOutOfBoundsException
+    public static void handleArrayIndexOutOfBoundsException(String[] names, int index) {
+        try {
+            System.out.println("Attempting to access the array at index " + index + "...");
+            // Access an index larger than the array length
+            System.out.println("Name at index " + index + ": " + names[index]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Handle ArrayIndexOutOfBoundsException
+            System.out.println("Caught ArrayIndexOutOfBoundsException: Index " + index + " is out of bounds.");
+        } catch (RuntimeException e) {
+            // Handle any other runtime exception
+            System.out.println("Caught RuntimeException: " + e.getMessage());
+        } finally {
+            System.out.println("ArrayIndexOutOfBoundsException handling is complete.");
+        }
+    }
+}
