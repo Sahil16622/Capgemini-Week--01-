@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class LowerCaseConversion {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the text
+        System.out.print("Enter the complete text: ");
+        String input = scanner.nextLine();
+
+        // Convert text to lowercase using the String built-in method
+        String builtInLowerCase = input.toLowerCase();
+
+        // Convert text to lowercase using the user-defined method
+        String userDefinedLowerCase = convertToLowerCase(input);
+
+        // Compare the two results using the user-defined comparison method
+        boolean areEqual = compareStrings(builtInLowerCase, userDefinedLowerCase);
+
+        // Display the results
+        System.out.println("\nOriginal Text: " + input);
+        System.out.println("Lowercase (Built-in Method): " + builtInLowerCase);
+        System.out.println("Lowercase (User-defined Method): " + userDefinedLowerCase);
+        System.out.println("Comparison Result: " + (areEqual ? "The results are the same!" : "The results are different."));
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to convert text to lowercase using charAt()
+    public static String convertToLowerCase(String text) {
+        StringBuilder lowerCaseText = new StringBuilder();
+
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            // Check if the character is uppercase
+            if (ch >= 'A' && ch <= 'Z') {
+                // Convert to lowercase by adding 32 to the ASCII value
+                lowerCaseText.append((char) (ch + 32));
+            } else {
+                // Append the character as it is
+                lowerCaseText.append(ch);
+            }
+        }
+
+        return lowerCaseText.toString();
+    }
+
+    // Method to compare two strings using charAt()
+    public static boolean compareStrings(String str1, String str2) {
+        // Check if the lengths are the same
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Compare each character
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
