@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class StringIndexOutOfBoundsExceptionDemo {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for a string
+        System.out.print("Enter a string: ");
+        String input = scanner.next();
+
+        // Call the method to generate the exception
+        System.out.println("\nCalling method to generate StringIndexOutOfBoundsException:");
+        generateStringIndexOutOfBoundsException(input);
+
+        // Call the method to handle the exception
+        System.out.println("\nCalling method to handle StringIndexOutOfBoundsException:");
+        handleStringIndexOutOfBoundsException(input);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to generate StringIndexOutOfBoundsException
+    public static void generateStringIndexOutOfBoundsException(String text) {
+        System.out.println("Attempting to access an invalid index...");
+        // Access an index beyond the string's length
+        System.out.println("Character at index 100: " + text.charAt(100)); // This will throw the exception
+    }
+
+    // Method to handle StringIndexOutOfBoundsException
+    public static void handleStringIndexOutOfBoundsException(String text) {
+        try {
+            System.out.println("Attempting to access an invalid index...");
+            // Access an index beyond the string's length
+            System.out.println("Character at index 100: " + text.charAt(100));
+        } catch (StringIndexOutOfBoundsException e) {
+            // Handle the exception and print a message
+            System.out.println("Caught StringIndexOutOfBoundsException! Index is out of range.");
+            System.out.println("Exception message: " + e.getMessage());
+        } finally {
+            System.out.println("StringIndexOutOfBoundsException handling is complete.");
+        }
+    }
+}
