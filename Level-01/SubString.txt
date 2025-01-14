@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class SubstringComparison {
+
+    public static void main(String[] args) {
+        // Create Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the string
+        System.out.print("Enter the string: ");
+        String text = scanner.next();
+
+        // Take user input for start and end indices
+        System.out.print("Enter the start index: ");
+        int startIndex = scanner.nextInt();
+        System.out.print("Enter the end index: ");
+        int endIndex = scanner.nextInt();
+
+        // Create a substring using charAt() method
+        String customSubstring = createSubstringUsingCharAt(text, startIndex, endIndex);
+
+        // Create a substring using the built-in substring() method
+        String builtInSubstring = text.substring(startIndex, endIndex);
+
+        // Compare the two substrings
+        boolean areEqual = compareStringsUsingCharAt(customSubstring, builtInSubstring);
+
+        // Display the results
+        System.out.println("Substring using charAt(): " + customSubstring);
+        System.out.println("Substring using built-in substring(): " + builtInSubstring);
+        System.out.println("Comparison result: " + (areEqual ? "The substrings are equal." : "The substrings are not equal."));
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to create a substring using charAt()
+    public static String createSubstringUsingCharAt(String text, int start, int end) {
+        StringBuilder substring = new StringBuilder();
+        for (int i = start; i < end; i++) {
+            substring.append(text.charAt(i));
+        }
+        return substring.toString();
+    }
+
+    // Method to compare two strings using charAt()
+    public static boolean compareStringsUsingCharAt(String str1, String str2) {
+        // Check if lengths are different
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Compare each character
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+
+        // If all characters match, the strings are equal
+        return true;
+    }
+}
