@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class IllegalArgumentExceptionDemo {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for a string
+        System.out.print("Enter a string: ");
+        String input = scanner.next();
+
+        // Call the method to generate the exception
+        System.out.println("\nCalling method to generate IllegalArgumentException:");
+        generateIllegalArgumentException(input);
+
+        // Call the method to handle the exception
+        System.out.println("\nCalling method to handle IllegalArgumentException:");
+        handleIllegalArgumentException(input);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to generate IllegalArgumentException
+    public static void generateIllegalArgumentException(String text) {
+        System.out.println("Attempting to use substring with invalid indices...");
+        // Use substring() with invalid indices (start index > end index)
+        String result = text.substring(5, 3); // This will throw IllegalArgumentException
+        System.out.println("Substring: " + result);
+    }
+
+    // Method to handle IllegalArgumentException
+    public static void handleIllegalArgumentException(String text) {
+        try {
+            System.out.println("Attempting to use substring with invalid indices...");
+            // Use substring() with invalid indices (start index > end index)
+            String result = text.substring(5, 3);
+            System.out.println("Substring: " + result);
+        } catch (IllegalArgumentException e) {
+            // Handle IllegalArgumentException
+            System.out.println("Caught IllegalArgumentException: " + e.getMessage());
+        } catch (RuntimeException e) {
+            // Handle any other runtime exception
+            System.out.println("Caught RuntimeException: " + e.getMessage());
+        } finally {
+            System.out.println("IllegalArgumentException handling is complete.");
+        }
+    }
+}
