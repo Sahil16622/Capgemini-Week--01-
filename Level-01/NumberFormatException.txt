@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class NumberFormatExceptionDemo {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input as a string
+        System.out.print("Enter a number as a string: ");
+        String input = scanner.next();
+
+        // Call the method to generate the exception
+        System.out.println("\nCalling method to generate NumberFormatException:");
+        generateNumberFormatException(input);
+
+        // Call the method to handle the exception
+        System.out.println("\nCalling method to handle NumberFormatException:");
+        handleNumberFormatException(input);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to generate NumberFormatException
+    public static void generateNumberFormatException(String text) {
+        System.out.println("Attempting to parse the string into an integer...");
+        // Use Integer.parseInt() to extract a number from the text
+        int number = Integer.parseInt(text); // This will throw NumberFormatException if input is not a valid number
+        System.out.println("Parsed number: " + number);
+    }
+
+    // Method to handle NumberFormatException
+    public static void handleNumberFormatException(String text) {
+        try {
+            System.out.println("Attempting to parse the string into an integer...");
+            // Use Integer.parseInt() to extract a number from the text
+            int number = Integer.parseInt(text);
+            System.out.println("Parsed number: " + number);
+        } catch (NumberFormatException e) {
+            // Handle NumberFormatException
+            System.out.println("Caught NumberFormatException: The input is not a valid number.");
+        } catch (RuntimeException e) {
+            // Handle any other runtime exception
+            System.out.println("Caught RuntimeException: " + e.getMessage());
+        } finally {
+            System.out.println("NumberFormatException handling is complete.");
+        }
+    }
+}
