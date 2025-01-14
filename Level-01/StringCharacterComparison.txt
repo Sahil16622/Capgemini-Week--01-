@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class StringCharacterComparison {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the string
+        System.out.print("Enter the string: ");
+        String input = scanner.next();
+
+        // Get characters using the user-defined method
+        char[] userDefinedChars = getCharactersFromString(input);
+
+        // Get characters using the built-in toCharArray() method
+        char[] builtInChars = input.toCharArray();
+
+        // Compare the two character arrays
+        boolean areEqual = compareCharacterArrays(userDefinedChars, builtInChars);
+
+        // Display the results
+        System.out.println("Characters using user-defined method: " + new String(userDefinedChars));
+        System.out.println("Characters using built-in toCharArray(): " + new String(builtInChars));
+        System.out.println("Comparison result: " + (areEqual ? "The arrays are equal." : "The arrays are not equal."));
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to return all characters from a string without using toCharArray()
+    public static char[] getCharactersFromString(String str) {
+        char[] characters = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            characters[i] = str.charAt(i);
+        }
+        return characters;
+    }
+
+    // Method to compare two character arrays
+    public static boolean compareCharacterArrays(char[] array1, char[] array2) {
+        // Check if lengths are different
+        if (array1.length != array2.length) {
+            return false;
+        }
+
+        // Compare each character
+        for (int i = 0; i < array1.length; i++) {
+            if (array1[i] != array2[i]) {
+                return false;
+            }
+        }
+
+        // If all characters match, arrays are equal
+        return true;
+    }
+}
