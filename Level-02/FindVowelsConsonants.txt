@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class CharacterTypeIdentifier {
+
+    // Method to check if the character is a vowel, consonant, or not a letter
+    public static String checkCharacterType(char c) {
+        // Convert uppercase letter to lowercase
+        if (c >= 'A' && c <= 'Z') {
+            c = (char) (c + 32);
+        }
+
+        // Check if the character is a vowel
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            return "Vowel";
+        }
+
+        // Check if the character is a consonant
+        if (c >= 'a' && c <= 'z') {
+            return "Consonant";
+        }
+
+        // If the character is not a letter
+        return "Not a Letter";
+    }
+
+    // Method to analyze the string and return a 2D array of characters and their types
+    public static String[][] analyzeString(String input) {
+        int length = input.length();
+        String[][] result = new String[length][2];
+
+        // Iterate through each character in the string
+        for (int i = 0; i < length; i++) {
+            char currentChar = input.charAt(i);
+            result[i][0] = String.valueOf(currentChar); // Store the character
+            result[i][1] = checkCharacterType(currentChar); // Store the character type
+        }
+
+        return result;
+    }
+
+    // Method to display the 2D array in a tabular format
+    public static void displayResult(String[][] characterData) {
+        System.out.println("Character\tType");
+        System.out.println("---------------------");
+
+        // Iterate through the 2D array and display the data
+        for (String[] row : characterData) {
+            System.out.println(row[0] + "\t\t" + row[1]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input
+        System.out.print("Enter a string: ");
+        String userInput = scanner.nextLine();
+
+        // Analyze the string
+        String[][] characterData = analyzeString(userInput);
+
+        // Display the results in tabular format
+        System.out.println("\nAnalysis of the string:");
+        displayResult(characterData);
+
+        scanner.close();
+    }
+}
