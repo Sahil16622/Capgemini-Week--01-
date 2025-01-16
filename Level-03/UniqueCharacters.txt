@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class UniqueCharacters {
+
+    // Method to find the length of the text without using the String method length()
+    public static int findLength(String text) {
+        int length = 0;
+        try {
+            while (true) {
+                text.charAt(length);
+                length++;
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            // When we reach the end of the string, it will throw an exception.
+            return length;
+        }
+    }
+
+    // Method to find unique characters in the string using charAt() method
+    public static char[] findUniqueCharacters(String text) {
+        int length = findLength(text);
+        char[] uniqueChars = new char[length];
+        int uniqueCount = 0;
+
+        // Nested loops to find unique characters
+        for (int i = 0; i < length; i++) {
+            char currentChar = text.charAt(i);
+            boolean isUnique = true;
+
+            // Check if the current character is unique by comparing with previous characters
+            for (int j = 0; j < i; j++) {
+                if (text.charAt(j) == currentChar) {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            // If unique, store the character in the result array
+            if (isUnique) {
+                uniqueChars[uniqueCount] = currentChar;
+                uniqueCount++;
+            }
+        }
+
+        // Create a new array of the exact size for unique characters
+        char[] result = new char[uniqueCount];
+        System.arraycopy(uniqueChars, 0, result, 0, uniqueCount);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking user input for the string
+        System.out.print("Enter a string: ");
+        String text = scanner.nextLine();
+
+        // Finding unique characters
+        char[] uniqueCharacters = findUniqueCharacters(text);
+
+        // Displaying the unique characters
+        System.out.print("Unique characters: ");
+        for (char c : uniqueCharacters) {
+            System.out.print(c + " ");
+        }
+    }
+}
