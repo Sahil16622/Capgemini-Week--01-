@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class CharacterFrequencyNestedLoops {
+
+    // Method to find the frequency of characters in a string using nested loops
+    public static String[] findFrequency(String text) {
+        char[] chars = text.toCharArray(); // Convert string to character array
+        int length = chars.length;
+        int[] freq = new int[length]; // Array to store the frequency of each character
+        StringBuilder result = new StringBuilder();
+
+        // Outer loop to iterate through each character
+        for (int i = 0; i < length; i++) {
+            // Skip counting the frequency of already counted characters
+            if (chars[i] == '0') {
+                continue;
+            }
+
+            // Initialize the frequency of the character to 1
+            freq[i] = 1;
+
+            // Inner loop to check for duplicate characters
+            for (int j = i + 1; j < length; j++) {
+                // If duplicate character found, increment frequency and mark it as counted
+                if (chars[i] == chars[j]) {
+                    freq[i]++;
+                    chars[j] = '0'; // Mark duplicate character as '0' to avoid counting again
+                }
+            }
+
+            // If the frequency is greater than 0, store the character and its frequency in result
+            if (chars[i] != '0') {
+                result.append(chars[i]).append(" : ").append(freq[i]).append("\n");
+            }
+        }
+
+        // Convert the result StringBuilder to a String array and return
+        return result.toString().split("\n");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking user input for the string
+        System.out.print("Enter a string: ");
+        String text = scanner.nextLine();
+
+        // Find the frequency of characters using nested loops
+        String[] frequency = findFrequency(text);
+
+        // Display the frequency of each character
+        System.out.println("Character Frequencies:");
+        for (String entry : frequency) {
+            System.out.println(entry);
+        }
+    }
+}
