@@ -1,0 +1,86 @@
+import java.util.Random;
+
+public class StudentScorecard {
+
+    // Method to generate random scores for Physics, Chemistry, and Math
+    public static int[][] generateScores(int numStudents) {
+        Random rand = new Random();
+        int[][] scores = new int[numStudents][3]; // 3 columns for Physics, Chemistry, and Math
+
+        for (int i = 0; i < numStudents; i++) {
+            scores[i][0] = rand.nextInt(81) + 20; // Physics: Random score between 20 and 100
+            scores[i][1] = rand.nextInt(81) + 20; // Chemistry: Random score between 20 and 100
+            scores[i][2] = rand.nextInt(81) + 20; // Math: Random score between 20 and 100
+        }
+
+        return scores;
+    }
+
+    // Method to calculate total, average, and percentage for each student
+    public static double[][] calculateTotalAndPercentage(int[][] scores, int numStudents) {
+        double[][] results = new double[numStudents][4]; // Total, Average, Percentage, Rounded Percentage
+
+        for (int i = 0; i < numStudents; i++) {
+            int total = scores[i][0] + scores[i][1] + scores[i][2];
+            double average = total / 3.0;
+            double percentage = (total / 300.0) * 100;
+            results[i][0] = total;
+            results[i][1] = average;
+            results[i][2] = percentage;
+            results[i][3] = Math.round(percentage * 100.0) / 100.0; // Rounded to 2 decimal places
+        }
+
+        return results;
+    }
+
+    // Method to calculate the grade based on percentage
+    public static String[] calculateGrades(double[][] results, int numStudents) {
+        String[] grades = new String[numStudents];
+
+        for (int i = 0; i < numStudents; i++) {
+            double percentage = results[i][3];
+            if (percentage >= 90) {
+                grades[i] = "A";
+            } else if (percentage >= 80) {
+                grades[i] = "B";
+            } else if (percentage >= 70) {
+                grades[i] = "C";
+            } else if (percentage >= 60) {
+                grades[i] = "D";
+            } else {
+                grades[i] = "F";
+            }
+        }
+
+        return grades;
+    }
+
+    // Method to display the scorecard in tabular format
+    public static void displayScorecard(int[][] scores, double[][] results, String[] grades, int numStudents) {
+        System.out.println("Student\tPhysics\tChemistry\tMath\tTotal\tAverage\tPercentage\tGrade");
+
+        for (int i = 0; i < numStudents; i++) {
+            System.out.printf("%d\t%d\t%d\t%d\t%d\t%.2f\t%.2f%%\t\t%s\n", 
+                              i + 1, 
+                              scores[i][0], scores[i][1], scores[i][2], 
+                              (int) results[i][0], results[i][1], 
+                              results[i][3], grades[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        int numStudents = 5; // Number of students to process
+
+        // Generate random scores for all students
+        int[][] scores = generateScores(numStudents);
+
+        // Calculate total, average, and percentage
+        double[][] results = calculateTotalAndPercentage(scores, numStudents);
+
+        // Calculate grades based on percentage
+        String[] grades = calculateGrades(results, numStudents);
+
+        // Display the scorecard in tabular format
+        displayScorecard(scores, results, grades, numStudents);
+    }
+}
