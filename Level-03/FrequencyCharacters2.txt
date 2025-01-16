@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class CharacterFrequencyUnique {
+
+    // Method to find unique characters in the string using charAt() method
+    public static char[] uniqueCharacters(String text) {
+        int length = text.length();
+        boolean[] visited = new boolean[length]; // To track if the character is already considered
+        StringBuilder uniqueChars = new StringBuilder();
+
+        // Loop through the text to find unique characters
+        for (int i = 0; i < length; i++) {
+            if (!visited[i]) {
+                char currentChar = text.charAt(i);
+                // Check if the current character is unique by comparing with the subsequent characters
+                boolean isUnique = true;
+                for (int j = i + 1; j < length; j++) {
+                    if (text.charAt(j) == currentChar) {
+                        isUnique = false;
+                        visited[j] = true; // Mark this character as visited
+                    }
+                }
+                if (isUnique) {
+                    uniqueChars.append(currentChar);
+                }
+            }
+        }
+        // Convert StringBuilder to char[] and return
+        char[] uniqueCharArray = new char[uniqueChars.length()];
+        uniqueChars.getChars(0, uniqueChars.length(), uniqueCharArray, 0);
+        return uniqueCharArray;
+    }
+
+    // Method to find the frequency of unique characters in the string
+    public static String[][] findFrequency(String text) {
+        // Find unique characters
+        char[] uniqueChars = uniqueCharacters(text);
+        
+        // Create an array to store frequency of characters (256 ASCII values)
+        int[] freq = new int[256];
+
+        // Loop through the text to count the frequency of each character
+        for (int i = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
+            freq[currentChar]++;
+        }
+
+        // Create a 2D array to store characters and their frequencies
+        String[][] result = new String[uniqueChars.length][2];
+        
+        // Loop through the unique characters to store the frequency and the character
+        for (int i = 0; i < uniqueChars.length; i++) {
+            char currentChar = uniqueChars[i];
+            result[i][0] = String.valueOf(currentChar); // Character
+            result[i][1] = String.valueOf(freq[currentChar]); // Frequency
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking user input for the string
+        System.out.print("Enter a string: ");
+        String text = scanner.nextLine();
+
+        // Find the frequency of unique characters
+        String[][] frequency = findFrequency(text);
+
+        // Display the frequency of each unique character
+        System.out.println("Character | Frequency");
+        for (int i = 0; i < frequency.length; i++) {
+            System.out.println(frequency[i][0] + "         | " + frequency[i][1]);
+        }
+    }
+}
