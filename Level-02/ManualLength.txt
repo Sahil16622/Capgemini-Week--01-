@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class StringLengthCalculator {
+
+    // Method to calculate the length of a string without using length() method
+    public static int calculateLength(String input) {
+        int count = 0;
+        try {
+            while (true) {
+                input.charAt(count); // Access each character
+                count++;             // Increment count
+            }
+        } catch (IndexOutOfBoundsException e) {
+            // Exception thrown when trying to access an out-of-bounds index
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input
+        System.out.print("Enter a string: ");
+        String userInput = scanner.next();
+
+        // Call the user-defined method
+        int calculatedLength = calculateLength(userInput);
+
+        // Call the built-in length() method
+        int builtInLength = userInput.length();
+
+        // Display the results
+        System.out.println("Length calculated using user-defined method: " + calculatedLength);
+        System.out.println("Length calculated using built-in method: " + builtInLength);
+
+        scanner.close();
+    }
+}
