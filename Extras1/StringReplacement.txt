@@ -1,0 +1,33 @@
+public class ReplaceWord {
+    public static String replaceWord(String sentence, String target, String replacement) {
+        // Split the sentence into words
+        String[] words = sentence.split("\\s+");
+        StringBuilder result = new StringBuilder();
+        
+        // Traverse each word
+        for (String word : words) {
+            // If the word matches the target, replace it
+            if (word.equals(target)) {
+                result.append(replacement);
+            } else {
+                result.append(word);
+            }
+            // Add a space after each word
+            result.append(" ");
+        }
+        
+        // Remove trailing space and return the modified sentence
+        return result.toString().trim();
+    }
+
+    public static void main(String[] args) {
+        // Test the replaceWord method
+        String sentence = "Java is a programming language and Java is fun.";
+        String target = "Java";
+        String replacement = "Python";
+        
+        String updatedSentence = replaceWord(sentence, target, replacement);
+        System.out.println("Original Sentence: " + sentence);
+        System.out.println("Updated Sentence: " + updatedSentence);
+    }
+}
