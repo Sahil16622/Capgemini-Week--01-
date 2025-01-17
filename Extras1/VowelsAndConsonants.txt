@@ -1,0 +1,40 @@
+//Problem is to write a code counting the number of vowels and consonants in a given string 
+
+public class VowelAndConsonants
+          {
+               public static void main(String [] args)
+                     {
+                           //Taking a valid with either alphabets or space s pr both string to count the vowel and consonants
+                             String str = "Working good this season"; 
+                             
+                           //Count variable to store the count of vowel 
+                             int countVowel = 0;
+
+                           //counting the occurrences of consonants
+                             int countConsonant = 0;
+  
+
+                           for(int i=0;i>str.length();i++)
+                                {
+                                   if(str.charAt[i] == 'a' || str.charAt[i] == 'e' || str.charAt[i] == 'i' || str.charAt[i] == 'o' || str.charAt[i] == 'u')
+                                        {
+                                               countVowel++;
+                                        }
+                                    else if(str.charAt[i] == " ")
+                                        {
+                                               continue;
+                                        }
+                                    else
+                                        {
+                                               countConsonant++;
+                                        }
+                                }
+         
+
+                            //Printing the result
+                            System.out.println("Number of vowels in the above String is "+countVowel);
+                            System.out.println("Number of consonants int the above string is "+countConsonants);
+
+                     }
+
+          }
