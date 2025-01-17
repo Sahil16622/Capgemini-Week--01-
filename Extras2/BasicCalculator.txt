@@ -1,0 +1,86 @@
+import java.util.Scanner;
+
+public class BasicCalculator {
+
+    // Function to perform addition
+    public static double add(double a, double b) {
+        return a + b;
+    }
+
+    // Function to perform subtraction
+    public static double subtract(double a, double b) {
+        return a - b;
+    }
+
+    // Function to perform multiplication
+    public static double multiply(double a, double b) {
+        return a * b;
+    }
+
+    // Function to perform division
+    public static double divide(double a, double b) {
+        if (b == 0) {
+            System.out.println("Error: Division by zero is undefined.");
+            return Double.NaN; // Return NaN to indicate an error
+        }
+        return a / b;
+    }
+
+    // Function to take input from the user
+    public static double takeInput(String prompt, Scanner scanner) {
+        System.out.print(prompt);
+        return scanner.nextDouble();
+    }
+
+    // Function to display the menu and return the user's choice
+    public static int displayMenu(Scanner scanner) {
+        System.out.println("Basic Calculator");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Division");
+        System.out.print("Choose an operation (1-4): ");
+        return scanner.nextInt();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Display menu and get user choice
+        int choice = displayMenu(scanner);
+
+        // Perform the selected operation
+        if (choice >= 1 && choice <= 4) {
+            double num1 = takeInput("Enter the first number: ", scanner);
+            double num2 = takeInput("Enter the second number: ", scanner);
+            double result;
+
+            switch (choice) {
+                case 1: // Addition
+                    result = add(num1, num2);
+                    System.out.println("The result of addition is: " + result);
+                    break;
+                case 2: // Subtraction
+                    result = subtract(num1, num2);
+                    System.out.println("The result of subtraction is: " + result);
+                    break;
+                case 3: // Multiplication
+                    result = multiply(num1, num2);
+                    System.out.println("The result of multiplication is: " + result);
+                    break;
+                case 4: // Division
+                    result = divide(num1, num2);
+                    if (!Double.isNaN(result)) {
+                        System.out.println("The result of division is: " + result);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            System.out.println("Invalid choice. Please select a number between 1 and 4.");
+        }
+
+        scanner.close();
+    }
+}
