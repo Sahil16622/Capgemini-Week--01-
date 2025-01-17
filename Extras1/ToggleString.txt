@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class ToggleCase {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a string
+        System.out.print("Enter a string to toggle case: ");
+        String input = scanner.nextLine();
+
+        // Toggle the case of the characters
+        String toggledString = toggleCase(input);
+
+        // Display the toggled string
+        System.out.println("String after toggling case: " + toggledString);
+    }
+
+    // Method to toggle the case of each character in a string
+    public static String toggleCase(String str) {
+        StringBuilder toggled = new StringBuilder();
+
+        // Iterate through each character in the string
+        for (char ch : str.toCharArray()) {
+            // Check if the character is uppercase
+            if (Character.isUpperCase(ch)) {
+                toggled.append(Character.toLowerCase(ch)); // Convert to lowercase
+            }
+            // Check if the character is lowercase
+            else if (Character.isLowerCase(ch)) {
+                toggled.append(Character.toUpperCase(ch)); // Convert to uppercase
+            } else {
+                // Append non-alphabetic characters without change
+                toggled.append(ch);
+            }
+        }
+
+        // Convert the StringBuilder to a String and return it
+        return toggled.toString();
+    }
+}
