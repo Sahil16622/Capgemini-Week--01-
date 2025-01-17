@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class AnagramCheck {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the first string
+        System.out.print("Enter the first string: ");
+        String str1 = scanner.nextLine();
+
+        // Prompt the user to enter the second string
+        System.out.print("Enter the second string: ");
+        String str2 = scanner.nextLine();
+
+        // Check if the strings are anagrams
+        boolean areAnagrams = checkAnagram(str1, str2);
+
+        // Display the result
+        if (areAnagrams) {
+            System.out.println("\"" + str1 + "\" and \"" + str2 + "\" are anagrams.");
+        } else {
+            System.out.println("\"" + str1 + "\" and \"" + str2 + "\" are not anagrams.");
+        }
+    }
+
+    // Method to check if two strings are anagrams
+    public static boolean checkAnagram(String str1, String str2) {
+        // If the strings are of different lengths, they cannot be anagrams
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Convert both strings to lowercase to make the comparison case-insensitive
+        str1 = str1.toLowerCase();
+        str2 = str2.toLowerCase();
+
+        // Convert the strings to char arrays
+        char[] arr1 = str1.toCharArray();
+        char[] arr2 = str2.toCharArray();
+
+        // Sort both arrays
+        java.util.Arrays.sort(arr1);
+        java.util.Arrays.sort(arr2);
+
+        // Compare the sorted arrays
+        return java.util.Arrays.equals(arr1, arr2);
+    }
+}
