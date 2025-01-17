@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a string
+        System.out.print("Enter a string to remove duplicates: ");
+        String input = scanner.nextLine();
+
+        // Remove duplicate characters
+        String result = removeDuplicates(input);
+
+        // Display the modified string
+        System.out.println("String after removing duplicates: " + result);
+    }
+
+    // Method to remove duplicate characters from a string
+    public static String removeDuplicates(String str) {
+        // Use a boolean array to track the characters that have already been seen
+        boolean[] seen = new boolean[256]; // Assuming ASCII character set
+        StringBuilder uniqueString = new StringBuilder();
+
+        // Iterate through the characters of the string
+        for (char ch : str.toCharArray()) {
+            // If the character has not been seen before, add it to the result
+            if (!seen[ch]) {
+                uniqueString.append(ch);
+                seen[ch] = true; // Mark the character as seen
+            }
+        }
+
+        // Convert the StringBuilder to a String and return it
+        return uniqueString.toString();
+    }
+}
