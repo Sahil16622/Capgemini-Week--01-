@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class RemoveCharacter {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        // Prompt the user to enter the character to remove
+        System.out.print("Enter the character to remove: ");
+        char charToRemove = scanner.next().charAt(0);
+
+        // Remove the specified character from the string
+        String modifiedString = removeCharacter(input, charToRemove);
+
+        // Display the modified string
+        System.out.println("Modified String: " + modifiedString);
+    }
+
+    // Method to remove all occurrences of a character from a string
+    public static String removeCharacter(String str, char ch) {
+        // Use StringBuilder to efficiently build the new string
+        StringBuilder result = new StringBuilder();
+
+        // Loop through each character in the string
+        for (int i = 0; i < str.length(); i++) {
+            // If the character is not the one to remove, append it to the result
+            if (str.charAt(i) != ch) {
+                result.append(str.charAt(i));
+            }
+        }
+
+        // Convert StringBuilder back to string and return
+        return result.toString();
+    }
+}
