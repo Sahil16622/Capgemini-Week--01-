@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class NumberGuessingGame {
+
+    // Method to generate a random guess within the range
+    public static int generateGuess(int lowerBound, int upperBound) {
+        Random random = new Random();
+        return random.nextInt(upperBound - lowerBound + 1) + lowerBound;
+    }
+
+    // Method to get feedback from the user
+    public static String getUserFeedback(Scanner scanner) {
+        System.out.print("Is my guess high, low, or correct? (Enter 'high', 'low', or 'correct'): ");
+        return scanner.next().toLowerCase();
+    }
+
+    // Main logic for the guessing game
+    public static void playGame() {
+        Scanner scanner = new Scanner(System.in);
+        int lowerBound = 1;
+        int upperBound = 100;
+        boolean guessedCorrectly = false;
+
+        System.out.println("Think of a number between 1 and 100, and I'll try to guess it!");
+        System.out.println("Provide feedback by typing 'high', 'low', or 'correct'.");
+
+        while (!guessedCorrectly) {
+            int guess = generateGuess(lowerBound, upperBound);
+            System.out.println("I guess: " + guess);
+
+            String feedback = getUserFeedback(scanner);
+
+            switch (feedback) {
+                case "high":
+                    upperBound = guess - 1; // Adjust range downwards
+                    break;
+                case "low":
+                    lowerBound = guess + 1; // Adjust range upwards
+                    break;
+                case "correct":
+                    System.out.println("Hooray! I guessed your number: " + guess);
+                    guessedCorrectly = true;
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter 'high', 'low', or 'correct'.");
+            }
+
+            // Check if bounds are invalid (user might have provided inconsistent feedback)
+            if (lowerBound > upperBound) {
+                System.out.println("Hmm, something seems wrong with your feedback. Let's try again!");
+                break;
+            }
+        }
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        playGame();
+    }
+}
