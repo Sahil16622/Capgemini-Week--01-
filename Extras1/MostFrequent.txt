@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class MostFrequentCharacter {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        // Find the most frequent character
+        char mostFrequentChar = findMostFrequentCharacter(input);
+
+        // Display the result
+        System.out.println("Most Frequent Character: '" + mostFrequentChar + "'");
+    }
+
+    // Method to find the most frequent character in a string
+    public static char findMostFrequentCharacter(String str) {
+        int[] frequency = new int[256]; // Array to store frequency of each character (for ASCII range)
+
+        // Count the frequency of each character in the string
+        for (char ch : str.toCharArray()) {
+            frequency[ch]++;
+        }
+
+        // Find the character with the highest frequency
+        int maxFrequency = 0;
+        char mostFrequentChar = str.charAt(0); // Default to the first character
+
+        for (int i = 0; i < 256; i++) {
+            if (frequency[i] > maxFrequency) {
+                maxFrequency = frequency[i];
+                mostFrequentChar = (char) i;
+            }
+        }
+
+        return mostFrequentChar;
+    }
+}
